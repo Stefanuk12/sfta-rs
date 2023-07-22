@@ -3,13 +3,8 @@ use std::{str, convert::TryInto};
 use base64::{engine::general_purpose, Engine};
 
 /// Gets the right shift value.
-fn shift_right(i_value: i32, i_count: i32) -> i32 {
-    let i_value = i_value as i64;
-    if i_value & 0x80000000 != 0 {
-        ((i_value >> i_count) ^ 0xFFFF0000).try_into().unwrap()
-    } else {
-        (i_value >> i_count).try_into().unwrap()
-    }
+fn shift_right(value: i32, count: i32) -> i32 {
+    value >> count
 }
 
 /// Reads a 32-bit signed from a `&[u8]`. Returns the number as a 64-bit signed
